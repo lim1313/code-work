@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>twittler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <script src="data.js"></script>
+</head>
+<body>
+  <!-- 여기에 HTML 구조를 작성하세요. 아래 코드는 예제이며, 얼마든지 바꿀 수 있습니다 -->
+  <div id="wrapper">
+  <div id="greeting">twittler</div>
+  <section class="wrapUp">
+    <div>
+      <div class="userName title">userName</div>
+      <input id="writeBox1" type="text" placeholder="write your name!">
+    </div>
+    <div>
+      <div class="message title">Message</div>
+      <textarea id="writeBox2" placeholder="write your comment!"></textarea>
+    </div>
+    <button id="addBtn">Tweet!</button>
+  </section>
+  <section class="wrapBottom">
+    <article>
+      <button id="refresh">check new tweets</button>
+    </article>
+    <ul>
+      <li>
+        <div class="comment">
+          <div class="commentId">yeji</div>
+          <p class="commentText">goob job!</p>
+        </div>
+        <span class="commetDate">2021-08-03 14:33:20</span>
+      </li>
+      <li>
+        <div class="comment">
+          <div class="commentId">hoho</div>
+          <p class="commentText">goob job!</p>
+        </div>
+        <span class="commetDate">2021-08-03 14:33:20</span>
+      </li>
+      <li>
+        <div class="comment">
+          <div class="commentId">haha</div>
+          <p class="commentText">goob job!</p>
+        </div>
+        <span class="commetDate">2021-08-03 14:33:20</span>
+      </li>
+    </ul>
+  </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
