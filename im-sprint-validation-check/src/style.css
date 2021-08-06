@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrap {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.hide {
+  display: none;
+}
+
+.toggleColor {
+  background-color: #2c3e50;
+  color: white;
+}
+
+fieldset {
+  border: none;
+}
