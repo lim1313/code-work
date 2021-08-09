@@ -20,9 +20,12 @@ let comb2 = document.querySelector('.comb2')
 
 let sizeRange = document.querySelector('.sizeRange')
 
+/*백그라운드 color change toggle*/
 function colorChange(){
   toggleColor.classList.toggle('toggleColor')
 }
+
+/*마우스 포인트 위치*/
 
 function move(e){
   const mouseX = e.clientX;
@@ -58,6 +61,7 @@ function comb2Match(e){
   pattern.test(e.target.value) ? comb2.classList.add("hide"): comb2.classList.remove('hide');
 }
 
+/*패스워드 look, hide toggle*/
 function passwordLook(e){
   lookBtn.classList.toggle('look')
 
@@ -76,7 +80,7 @@ lookBtn.addEventListener('click',(e) => passwordLook(e))
 /*
 비밀번호 확인
 1. 동일하지 않으면 에러 메시지
-2. 동일한 경우에만 통화
+2. 동일한 경우에만 통과
 */
 
 function passwordMatch(e){
@@ -117,6 +121,8 @@ function allCheck(e){
 }
 
 passCheck.addEventListener('click', e => allCheck(e))
+
+/*글자 사이즈 변경 랜지*/
 
 function changeSize(){
   console.dir(sizeRange);
