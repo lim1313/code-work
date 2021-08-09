@@ -11,27 +11,36 @@
 </head>
 
 <body>
-  <div class = "wrap toggleColor">
-    <button class="toggleBtn">유효성 검사</button> 
-    <!-- 동영상 강의에 나온 코드를 그대로 실습하세요 -->
-    <h1>회원가입</h1>
-    <fieldset>
-      <label for="">아이디</label>
-      <input type="text" id="username">
-      <div class="failure-message hide">아이디 네 글자 이상</div>
-      <div class="success-message hide">사용할 수 있음</div>
-    </fieldset>
-    <fieldset>
-      <label for="">비밀번호</label>
-      <input type="password">
-    </fieldset>
-    <fieldset>
-      <label for="">비밀번호 확인</label>
-      <input type="password">
-    </fieldset>
-
-    <script src="script.js"></script>
+  <div class="wrapper">
+    <div class = "wrap toggleColor">
+      <button class="toggleBtn">유효성 검사</button> 
+      <h1>회원가입</h1>
+      <fieldset>
+        <label for="">아이디</label>
+        <input type="text" id="username" autocomplete="off">
+        <div class = "comb hide">5글자 이상, 영어와 숫자를 조합해야 합니다</div>
+      </fieldset>
+      <fieldset>
+        <label for="">비밀번호</label>
+        <input type="password" id="password" autocomplete="new-password">
+        <button class="lookBtn look">look</button>
+        <span class="countNum">0</span>
+        <div class="comb2 hide">6~12글자 제한, 영어, 숫자, 특수문자를 조합해야 합니다</div>
+      </fieldset>
+      <fieldset>
+        <label for="">비밀번호 확인</label>
+        <input type="password" id="password-retype" autocomplete="new-password">
+        <div class="mismatch hide">비밀번호 비일치</div>
+      </fieldset>
+      <fieldset>
+        <button class="passCheck">회원가입</button>
+      </fieldset>
+      <input type="range" class = "sizeRange" min="0.5" max="1.5" value = "1" step="0.1">
+      <div class = "passAlert"></div>
+    </div>
+    <span class="one"></span>
   </div>
+    <script src="script.js"></script>
 </body>
 
 </html>

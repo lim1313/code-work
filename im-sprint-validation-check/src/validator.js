@@ -10,11 +10,27 @@ function strongPassword(str) {
   return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(str);
 }
 
+
 // 주석을 제거하고, 유효성 검증 함수를 테스트 해보세요
 
-// console.log('`codestates`는 영어만 포함하므로', onlyNumberAndEnglish('codestates'))
-// console.log('`김coding`은 영어 외의 다른 글자도 포함하므로', onlyNumberAndEnglish('김coding'))
-// console.log('`김코딩`은 영어 외의 다른 글자도 포함하므로', onlyNumberAndEnglish('김코딩'))
-// console.log('`qwerty`는 충분히 강력하지 않은 암호이므로', strongPassword('qwerty'))
-// console.log('`q1w2e3r4`는 특수문자를 포함하지 않으므로', strongPassword('q1w2e3r4'))
-// console.log('`q1w2e3r4!`는 조건을 충족하므로', strongPassword('q1w2e3r4!'))
+console.log('`codestates555안녕???`는 영어만 포함하므로', onlyNumberAndEnglish('codestates5554ss4'))
+
+console.log('`김coding`은 영어 외의 다른 글자도 포함하므로', onlyNumberAndEnglish('김coding'))
+
+console.log('`김코딩`은 영어 외의 다른 글자도 포함하므로', onlyNumberAndEnglish('김코딩'))
+
+console.log('`qwerty`는 충분히 강력하지 않은 암호이므로', strongPassword('qwerty'))
+
+console.log('`q1w2e3r4`는 특수문자를 포함하지 않으므로', strongPassword('q1w2e3r4'))
+
+console.log('`q1w2e3r4!`는 조건을 충족하므로', strongPassword('q1w2e3r4!'))
+
+
+let pattern = /^(?:https?:\/\/)?(?:www\.)?[\w]+\.[\w]+\/([\w-]+)$/
+let result = pattern.exec("youtube.be/-ZclicWozm")
+
+let str = "http://youtube.be/-AioebdoDem"
+let result2 = str.match(pattern)
+
+console.log(result);
+console.log(result2[1]); //->"-AioebdoDem"
