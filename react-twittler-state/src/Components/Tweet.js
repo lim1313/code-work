@@ -3,7 +3,7 @@ import './Tweet.css';
 
 const Tweet = ({ tweet }) => {
   const parsedDate = new Date(tweet.createdAt).toLocaleDateString('ko-kr');
-
+  console.log('tweet');
   return (
     <li className='tweet' id={tweet.id}>
       <div className='tweet__profile'>
