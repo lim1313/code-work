@@ -31,8 +31,8 @@ const Tweets = () => {
       createdAt: Date(),
       updatedAt: Date(),
     };
-    setSelectUser([tweet, ...dummyTweets]);
-    setDummy([tweet, ...dummyTweets]);
+    setSelectUser([tweet, ...dummy]);
+    setDummy([tweet, ...dummy]);
     setName('');
     setText('');
   };
@@ -47,10 +47,10 @@ const Tweets = () => {
   };
 
   const deleteMsg = (v) => {
-    dummy.splice(dummy.indexOf(v), 1);
-    setDummy(dummy);
+    let value = dummy.filter((a) => a.id !== v.id);
+    setDummy(value);
     console.log(dummy);
-    setSelectUser(dummy);
+    setSelectUser(value);
   };
 
   const handleChangeMsg = (e) => {
@@ -86,7 +86,7 @@ const Tweets = () => {
               <div className='tweetForm__count' role='status'>
                 <span className='tweetForm__count__text'>
                   {/* TODO : 트윗 총 개수를 보여줄 수 있는 Counter를 작성하세요. */}
-                  {'total: ' + dummyTweets.length}
+                  {'total: ' + dummy.length}
                 </span>
               </div>
             </div>
