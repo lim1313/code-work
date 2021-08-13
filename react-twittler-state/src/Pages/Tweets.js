@@ -10,8 +10,9 @@ const Tweets = () => {
   let [name, setName] = useState('');
   let [text, setText] = useState('');
   let [selectUser, setSelectUser] = useState(dummyTweets);
+  let [dummy, setDummy] = useState(dummyTweets);
 
-  console.log(dummyTweets);
+  console.log(dummy);
 
   let nameChange = (e) => {
     setName(e.target.value);
@@ -30,24 +31,26 @@ const Tweets = () => {
       createdAt: Date(),
       updatedAt: Date(),
     };
-    dummyTweets.unshift(tweet);
+    setSelectUser([tweet, ...dummyTweets]);
+    setDummy([tweet, ...dummyTweets]);
     setName('');
     setText('');
   };
-
-  // const handleButtonClick = (event) => {
-  //   ;
-  //   // TODO : Tweet button 엘리먼트 클릭시 작동하는 함수를 완성하세요.
-  //   // 트윗 전송이 가능하게 작성해야 합니다.
-  // };
 
   const handleChangeUser = (e) => {
     // TODO : Tweet input 엘리먼트에 입력 시 작동하는 함수를 완성하세요.
     setSelectUser(
       e.target.value !== 'all user'
-        ? dummyTweets.filter((v) => v.username === e.target.value)
-        : dummyTweets
+        ? dummy.filter((v) => v.username === e.target.value)
+        : dummy
     );
+  };
+
+  const deleteMsg = (v) => {
+    dummy.splice(dummy.indexOf(v), 1);
+    setDummy(dummy);
+    console.log(dummy);
+    setSelectUser(dummy);
   };
 
   const handleChangeMsg = (e) => {
@@ -111,7 +114,7 @@ const Tweets = () => {
       <ul className='tweets'>
         {/* TODO : 하나의 트윗이 아니라, 주어진 트윗 목록(dummyTweets) 갯수에 맞게 보여줘야 합니다. */}
         {selectUser.map((v) => (
-          <Tweet key={v.id} tweet={v} />
+          <Tweet key={v.id} tweet={v} deleteMsg={(e) => deleteMsg(e)} />
         ))}
       </ul>
       <Footer />
