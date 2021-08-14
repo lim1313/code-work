@@ -12,8 +12,6 @@ const Tweets = () => {
   let [selectUser, setSelectUser] = useState(dummyTweets);
   let [dummy, setDummy] = useState(dummyTweets);
 
-  console.log(dummy);
-
   let nameChange = (e) => {
     setName(e.target.value);
   };
