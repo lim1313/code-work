@@ -37,17 +37,16 @@ const Tweets = () => {
 
   const handleChangeUser = (e) => {
     // TODO : Tweet input 엘리먼트에 입력 시 작동하는 함수를 완성하세요.
-    setSelectUser(
-      e.target.value !== 'all user'
-        ? dummy.filter((v) => v.username === e.target.value)
-        : dummy
-    );
+
+    if (e.target.value === 'all user') {
+      return setSelectUser(dummy);
+    }
+    return setSelectUser(dummy.filter((v) => v.username === e.target.value));
   };
 
   const deleteMsg = (v) => {
     let value = dummy.filter((a) => a.id !== v.id);
     setDummy(value);
-    console.log(dummy);
     setSelectUser(value);
   };
 
@@ -104,9 +103,17 @@ const Tweets = () => {
       <div className='tweet__selectUser'>
         <select onChange={handleChangeUser}>
           <option>all user</option>
-          {selectUser.map((v) => (
-            <option key={v.id}>{v.username}</option>
-          ))}
+          {selectUser
+            .filter(
+              (v, i) =>
+                !selectUser
+                  .slice(i + 1)
+                  .map((v) => v.username)
+                  .includes(v.username)
+            )
+            .map((v) => (
+              <option key={v.id}>{v.username}</option>
+            ))}
         </select>
       </div>
       <ul className='tweets'>
