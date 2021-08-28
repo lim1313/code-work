@@ -187,7 +187,7 @@ function createTreeView(menu, currentNode) {
       input.setAttribute('type', 'checkbox');
       li.append(input, span);
       li.append(ul);
-
+      // debugger
       createTreeView(menu[v].children, ul);
     } else {
       li.textContent = menu[v].name;

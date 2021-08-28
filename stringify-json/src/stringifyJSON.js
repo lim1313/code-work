@@ -46,7 +46,7 @@ function stringifyJSON(obj) {
       if (Array.isArray(obj)) {
         inner.push(value);
       } else if (value === undefined) {
-        return inner;
+        continue;
       } else {
         inner.push(key + ':' + value);
       }
