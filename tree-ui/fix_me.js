@@ -175,7 +175,7 @@ const root = document.getElementById('root');
 function createTreeView(menu, currentNode) {
   // TODO: createTreeView 함수를 작성하세요.
 
-  for (let v of Object.keys(menu)) {
+  for (let v in menu) {
     const li = document.createElement('li');
 
     if (menu[v].children) {
