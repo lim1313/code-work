@@ -54,6 +54,7 @@ export default function Main() {
             <div className='col'></div>
           </div>{' '}
           {loading ? <LoadingIndicator /> : <FlightList list={flightList} />}
+          {/* <FlightList list={flightList} /> */}
         </div>
         <div className='debug-area'>
           <Debug condition={condition} />
