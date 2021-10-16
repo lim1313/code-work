@@ -28,21 +28,35 @@ module.exports = {
     },
 
     post: (userId, orders, totalPrice, callback) => {
-      let sql = `INSERT INTO orders VALUES (default, ${userId}, ${totalPrice}, default)`;
+      db.beginTransaction((err) => {
+        if (err) return callback(err, result);
+        let sql = `INSERT INTO orders VALUES (default, ${userId}, ${totalPrice}, default)`;
 
-      db.query(sql, (err, result) => {
-        let insertId = result.insertId;
-        let sql2 = `INSERT INTO order_items (order_id, item_id, order_quantity) VALUES ?`;
+        db.query(sql, (err, result) => {
+          if (err) {
+            db.rollback();
+            return callback(err, result);
+          }
 
-        let orderArr = orders.map((v) => {
-          return [insertId, v.itemId, v.quantity];
-        });
+          let insertId = result.insertId;
+          let sql2 = `INSERT INTO order_items (order_id, item_id, order_quantity) VALUES ?`;
 
-        db.query(sql2, [orderArr], (err, result) => {
-          callback(err, result);
+          let orderArr = orders.map((v) => {
+            return [insertId, v.itemId, v.quantity];
+          });
+
+          db.query(sql2, [orderArr], (err, result) => {
+            if (err) {
+              db.rollback();
+              return callback(err, result);
+            }
+            db.commit();
+            return callback(err, result);
+          });
         });
       });
     },
+
     //!------
     //! 결론
     // ? 1. js 에러 발생시 서버 down
@@ -52,19 +66,51 @@ module.exports = {
   },
 };
 
+//! Transaction 처리 X//
 //  post: (userId, orders, totalPrice, callback) => {
-//     const queryString1 = `INSERT INTO orders (user_id, total_price) VALUES (${userId}, ${totalPrice})`;
-//     const queryString2 = `INSERT INTO order_items (item_id, order_quantity, order_id) VALUES ?`;
+//       let sql = `INSERT INTO orders VALUES (default, ${userId}, ${totalPrice}, default)`;
 
-//     const params = orders.map((el) => [el.itemId, el.quantity]); // => error
-//     // console.log('            before sending db query');
+//       db.query(sql, (err, result) => {
+//         let insertId = result.insertId;
+//         let sql2 = `INSERT INTO order_items (order_id, item_id, order_quantity) VALUES ?`;
 
-//     db.query(queryString1, (err, result) => {
-//       // const params = orders.map((el) => [el.itemId, el.quantity]); //
-//       params.map((el) => el.push(result.insertId));
+//         let orderArr = orders.map((v) => {
+//           return [insertId, v.itemId, v.quantity];
+//         });
 
-//       db.query(queryString2, [params], (err, result) => {
-//         callback(err, result);
+//         db.query(sql2, [orderArr], (err, result) => {
+//           callback(err, result);
+//         });
 //       });
-//     });
-//   },
+//     },
+
+//! Transaction !//
+//  post: (userId, orders, totalPrice, callback) => {
+//       db.beginTransaction((err) => {
+//         if (err) return callback(err, result);
+//         let sql = `INSERT INTO orders VALUES (default, ${userId}, ${totalPrice}, default)`;
+
+//         db.query(sql, (err, result) => {
+//           if (err) {
+//             db.rollback();
+//             return callback(err, result);
+//           }
+
+//           let insertId = result.insertId;
+//           let sql2 = `INSERT INTO order_items (order_id, item_id, order_quantity) VALUES ?`;
+
+//           let orderArr = orders.map((v) => {
+//             return [insertId, v.itemId, v.quantity];
+//           });
+
+//           db.query(sql2, [orderArr], (err, result) => {
+//             if (err) {
+//               db.rollback();
+//               return callback(err, result);
+//             }
+//             db.commit();
+//             return callback(err, result);
+//           });
+//         });
+//       });
+//     },
