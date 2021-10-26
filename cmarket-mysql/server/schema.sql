@@ -38,3 +38,6 @@ ALTER TABLE order_items ADD FOREIGN KEY (item_id) REFERENCES items (id);
 /*  Execute this file from the command line by typing:
  *    mysql -u root < server/schema.sql -p -Dcmarket
  *  to create the database and the tables.*/
+
+ -- /server 폴더까지 들어가서 실행하는 것이 아닌  
+-- code-work/cmarket-database 에서 실행해야 한다. 
